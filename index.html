@@ -1,0 +1,970 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Carta digital del Restaurante Aduana en el Puerto de Valencia. Tapas, arroces, pescados, carnes, postres y seleccion de vinos." />
+  <meta name="theme-color" content="#171411" />
+  <title>Restaurante Aduana - Carta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LANGUAGE SELECTOR -->
+  <div class="lang-bar">
+    <span class="lang-label" data-i18n="lang_label">Idioma:</span>
+    <div class="lang-buttons">
+      <button class="lang-btn active" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="it">IT</button>
+      <button class="lang-btn" data-lang="de">DE</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <div class="logo-box">ADUANA</div>
+        <div class="logo-divider"></div>
+        <div class="logo-since">
+          <span class="since-word" data-i18n="since">Desde</span>
+          <span class="since-year">1930</span>
+        </div>
+      </div>
+      <p class="header-tagline" data-i18n="tagline">Puerto de Valencia · Carrer del Moll de la Duana, s/n</p>
+      <div class="hero-copy">
+        <p class="hero-kicker" data-i18n="hero_kicker">Cocina mediterránea frente al mar</p>
+        <h1 class="hero-title" data-i18n="hero_title">Carta digital con elegancia atemporal</h1>
+        <p class="hero-description" data-i18n="hero_description">Una experiencia más clara, refinada y cómoda para tus clientes desde el móvil.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="hero-action hero-action--primary" href="#menu-food" data-i18n="hero_cta_menu">Ver carta</a>
+        <a class="hero-action" href="tel:+34963672677" data-i18n="hero_cta_book">Llamar al restaurante</a>
+      </div>
+    </div>
+    <div class="header-wave"></div>
+  </header>
+
+  <!-- MENU / WINE TOGGLE -->
+  <nav class="card-nav">
+    <button class="card-nav-btn active" id="btn-food" data-i18n="nav_food">Carta</button>
+    <div class="card-nav-divider">·</div>
+    <button class="card-nav-btn" id="btn-wine" data-i18n="nav_wine">Vinos</button>
+  </nav>
+
+  <section class="service-strip">
+    <article class="service-card">
+      <p class="service-label" data-i18n="service_location_label">Ubicación</p>
+      <p class="service-text" data-i18n="service_location_text">Puerto de Valencia</p>
+    </article>
+    <article class="service-card">
+      <p class="service-label" data-i18n="service_hours_label">Horario</p>
+      <p class="service-text" data-i18n="service_hours_text">Comidas y cenas de martes a sábado</p>
+    </article>
+    <article class="service-card">
+      <p class="service-label" data-i18n="service_phone_label">Reservas</p>
+      <p class="service-text">96 367 26 77</p>
+    </article>
+  </section>
+
+  <section class="section-shortcuts" aria-label="Accesos rápidos a la carta">
+    <a class="shortcut-chip" href="#cat-hot" data-i18n="cat_hot_tapas">Tapas Calientes</a>
+    <a class="shortcut-chip" href="#cat-cold" data-i18n="cat_cold_tapas">Tapas Frías</a>
+    <a class="shortcut-chip" href="#cat-rice" data-i18n="cat_rice">Arroces</a>
+    <a class="shortcut-chip" href="#cat-fish" data-i18n="cat_fish">Pescados</a>
+    <a class="shortcut-chip" href="#cat-desserts" data-i18n="cat_desserts">Postres</a>
+  </section>
+
+
+  <!-- ===================== FOOD MENU ===================== -->
+  <main id="menu-food" class="menu-section active">
+
+    <p class="allergen-note" data-i18n="allergen">* Disponemos de carta de alérgenos. Pídela a nuestro camarero/a.</p>
+
+    <!-- TAPAS CALIENTES -->
+    <section class="menu-category" id="cat-hot">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_hot_tapas">Tapas Calientes</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_asparagus">Crujiente de espárragos trigueros con queso del Valle del Emme</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">9,80€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_gambita">Gambita rayada a la andaluza</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">12,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_calamar_plancha">Calamar de playa a la plancha</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">22,00€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_pulpo">Pulpo a la brasa con cremoso de patata</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">19,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_sardina_fresca">Sardinas frescas a la plancha</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">9,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_calamar_andaluza">Calamar de playa a la andaluza</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">18,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_croquetas_boletus">Croquetas caseras de boletus</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">11,60€ / 4 ud</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_croquetas_jamon">Croquetas caseras de jamón ibérico</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">11,60€ / 4 ud</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_gambas_ajillo">Gambas alistado al ajillo especial Aduana</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">19,50€ / 6 ud</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_txipirones">Txipirones en su tinta</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">14,00€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_sepia">Sepia "bruta" de playa</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">13,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_bravas">Bravas al estilo Juana</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">7,95€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_bunuelos">Buñuelos de bacalao con mermelada casera de tomate y ajo-aceite</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">14,50€</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- TAPAS FRÍAS -->
+    <section class="menu-category" id="cat-cold">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_cold_tapas">Tapas Frías</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_ostra">Ostra Francesa de Gillardeau nº2</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">5,50€ ud / mín. 2 ud</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_anchoas">Anchoas caseras "00" con tomate valenciano</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">3,50€ ud / mín. 2 ud</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_sardina_ahumada">Sardina ahumada con tomate valenciano</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">3,50€ ud / mín. 2 ud</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_ensaladilla">Ensaladilla rusa</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">7,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_gildas">Gildas (Pincho vasco de anchoa y piparra)</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">2,75€ ud / mín. 2 ud</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ENSALADAS -->
+    <section class="menu-category">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_salads">Ensaladas</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_ventresca">Ensalada de ventresca con tomate valenciano, cebolla tierna y olivas marcidas</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">14,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_ensalada_aduana">Ensalada Aduana</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">13,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_atun_aguacate">Ensalada templada de atún fresco y aguacate al aroma de jengibre</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">16,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_tabla_jamon">Tabla de jamón ibérico, queso de oveja y queso al romero</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">21,00€</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ARROCES -->
+    <section class="menu-category" id="cat-rice">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_rice">Arroces</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <p class="category-note" data-i18n="rice_note">* Solo mediodía · Mínimo 2 personas · Precio por persona</p>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_arroz_boletus">Arroz meloso de boletus y cigalitas</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_arroz_marisco">Arroz meloso de marisco</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_arroz_pollo">Arroz meloso de pollo campero, conejo y caracoles</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_arroz_pato">Arroz meloso de pato y acelgas</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_arroz_pulpo">Arroz meloso de pulpo, ajos tiernos y garbanzos</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_arroz_bogavante">Arroz meloso de bogavante</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">26,00€</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CARNES -->
+    <section class="menu-category">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_meat">Carnes</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_entrecotte">Entrecotte de vaca vieja de pasto de León madurada</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">29,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_carrillada">Carrillada de ternera con cous-cous</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">19,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_solomillo">Solomillo de ternera con foie, crema de boletus y espárragos</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">24,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_secreto">Secreto de cerdo ibérico con parmentier de patata al romero</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">18,50€</span>
+        </li>
+      </ul>
+    </section>
+    
+    <!-- PESCADOS -->
+    <section class="menu-category" id="cat-fish">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_fish">Pescados</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_corvina">Corvina con verduritas salteadas</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">15,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_bacalao">Bacalao asado con infusión de queso</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">15,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_emperador">Emperador con salsa Mery</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">14,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_salmon">Salmón asado con hervido valenciano</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">15,50€</span>
+        </li>
+        <li class="dish-item dish-item--special">
+          <span class="dish-name" data-i18n="d_pescado_lonja">Pescado fresco de lonja</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price dish-price--ask" data-i18n="price_ask">Consultar</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- POSTRES -->
+    <section class="menu-category" id="cat-desserts">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_desserts">Postres</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <ul class="dish-list">
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_chocolate">Chocolate en texturas</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">6,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_tarta_queso">Tarta de queso al horno</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">6,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_tarta_lotus">Tarta cremosa de galleta lotus</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">6,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_tarta_tatin">Tarta tatín de manzana hojaldrada con helado de vainilla</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">7,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_brownie">Brownie de avellana con helado de vainilla y sopa de chocolate blanco</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">7,75€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_trufas">Trufas caseras de chocolate a la naranja valenciana</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">8,00€ (4 ud)</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_sorbete">Sorbete de limón al cava</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">5,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_tiramisu">Tiramisú</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">6,50€</span>
+        </li>
+        <li class="dish-item">
+          <span class="dish-name" data-i18n="d_flan">Flan de huevo</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">5,50€</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="extras-note">
+      <p>🍞 <span data-i18n="bread_note">Pan 1,50€/ud · Salsa 2,50€</span></p>
+      <p data-i18n="suggestions_note">Recuerde preguntar por nuestras sugerencias fuera de la carta.</p>
+    </div>
+
+  </main>
+
+  <!-- ===================== WINE MENU ===================== -->
+  <main id="menu-wine" class="menu-section">
+
+    <!-- VINOS TINTOS -->
+    <section class="menu-category">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_red_wine">Vinos Tintos</h2>
+        <div class="category-ornament"></div>
+      </div>
+
+      <h3 class="wine-region">Valencianos</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Nebla</span>
+            <span class="wine-grape">Garnacha</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Murviedro Sericis Cepas Viejas</span>
+            <span class="wine-grape">100% Monastrell</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Murviedro Sericis Cepas Viejas Maduresa</span>
+            <span class="wine-grape">100% Bobal</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Enrique Mendoza a Finca Xaconero</span>
+            <span class="wine-grape">80% Monastrell, 20% Cariñena</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">29,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Pago de los Balagueses</span>
+            <span class="wine-grape">Monastrell, Cabernet Sauvignon</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">22,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Venta el Puerto Nº12</span>
+            <span class="wine-grape">100% Syrah</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">33,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">El Sequé</span>
+            <span class="wine-grape">Cab. Sauvignon, Merlot, Shirah, Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">22,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Bassus Hispano Suizas</span>
+            <span class="wine-grape">Tinta Monastrell</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">34,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Bobos Hispano Suizas</span>
+            <span class="wine-grape">Pinot Noir</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">32,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Nodus</span>
+            <span class="wine-grape">Bobal 100%</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">33,50€</span>
+        </li>
+      </ul>
+
+      <h3 class="wine-region">D.O. Rioja</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Cune Crianza</span>
+            <span class="wine-grape">Tempranillo, Mazuelo, Graciano</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">19,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Ramon Bilbao Crianza</span>
+            <span class="wine-grape">Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Izadi</span>
+            <span class="wine-grape">Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Ramon Bilbao Edición Limitada</span>
+            <span class="wine-grape">Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">24,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Marqués de Vargas Reserva</span>
+            <span class="wine-grape">Tempranillo, Garnacha Tinta, Mazuelo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">32,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Viña Alberdi Crianza</span>
+            <span class="wine-grape">Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">28,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Viña Arana Gran Reserva</span>
+            <span class="wine-grape">Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">44,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Muga Crianza</span>
+            <span class="wine-grape">Tempranillo, Manzuelo, Graciano, Garnacha</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">28,50€</span>
+        </li>
+      </ul>
+
+      <h3 class="wine-region">D.O. Ribera del Duero</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Doble R</span>
+            <span class="wine-grape"></span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">19,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Emilio Moro</span>
+            <span class="wine-grape">Crianza</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">31,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Aster Crianza</span>
+            <span class="wine-grape">Tinta del País</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">29,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Pruno</span>
+            <span class="wine-grape">Tinto Fino, Cabernet Sauvignon</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">23,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Carmelo Rodero</span>
+            <span class="wine-grape">Tinta del País, Cabernet Sauvignon</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">37,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Arzuaga Crianza</span>
+            <span class="wine-grape">Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">36,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Pago Carraovejas</span>
+            <span class="wine-grape">Tinto Fino, Cabernet Sauvignon, Merlot</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">46,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Malleolus</span>
+            <span class="wine-grape">Tempranillo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">46,00€</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- VINOS ROSADOS -->
+    <section class="menu-category">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_rose_wine">Vinos Rosados</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <h3 class="wine-region">Valencianos</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Finca del Mar</span>
+            <span class="wine-grape">Bobal</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Huella de Merlot Rosé Vegamar</span>
+            <span class="wine-grape">100% Merlot</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">19,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Impromptu Rosé</span>
+            <span class="wine-grape">100% Pinot Noir</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">35,50€</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- VINOS BLANCOS -->
+    <section class="menu-category">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_white_wine">Vinos Blancos</h2>
+        <div class="category-ornament"></div>
+      </div>
+
+      <h3 class="wine-region">Valencianos</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Cullerot Celler Del Roure</span>
+            <span class="wine-grape">Macabeo, Malvasia, Pedro Ximénez y otras variedades</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">22,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Vegamar Vino de Autor</span>
+            <span class="wine-grape">Sauvignon Blanc, Macabeo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">21,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Hoya de Cadenas</span>
+            <span class="wine-grape">Chardonnay</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">17,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Huella de Merseguera Vegamar</span>
+            <span class="wine-grape">100% Merseguera</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">19,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Murviedro Sericis Cepas Viejas</span>
+            <span class="wine-grape">100% Merseguera</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Impromptu Blanco</span>
+            <span class="wine-grape">Sauvignon Blanc</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">35,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Marina Alta</span>
+            <span class="wine-grape"></span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">18,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Casa Benasal</span>
+            <span class="wine-grape">Moscatel, Gewurztraminer</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Nodus Chardonnay</span>
+            <span class="wine-grape">100% Chardonnay</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">22,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Nodus Sauvignon Blanc</span>
+            <span class="wine-grape">100% Sauvignon Blanc</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">21,90€</span>
+        </li>
+      </ul>
+
+      <h3 class="wine-region">D.O. Rueda</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Señorío Delizia</span>
+            <span class="wine-grape">Verdejo 100%</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">18,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Jose Pariente</span>
+            <span class="wine-grape">Verdejo 100%</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">23,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Jose Pariente Barrica</span>
+            <span class="wine-grape">Barrica</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">32,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Beronia</span>
+            <span class="wine-grape">Verdejo 100%</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">21,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Nebla Vendimia Nocturna</span>
+            <span class="wine-grape">Verdejo 100%</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,90€</span>
+        </li>
+      </ul>
+
+      <h3 class="wine-region">D.O. Albariño</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Albariño La Val</span><span class="wine-grape"></span></div>
+          <span class="dish-dots"></span><span class="dish-price">20,90€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Pazo San Mauro</span><span class="wine-grape"></span></div>
+          <span class="dish-dots"></span><span class="dish-price">26,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Lagar de Cervera</span><span class="wine-grape"></span></div>
+          <span class="dish-dots"></span><span class="dish-price">25,75€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Leneas</span><span class="wine-grape"></span></div>
+          <span class="dish-dots"></span><span class="dish-price">24,75€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Costas Do Dornas</span><span class="wine-grape"></span></div>
+          <span class="dish-dots"></span><span class="dish-price">17,50€</span>
+        </li>
+      </ul>
+
+      <h3 class="wine-region">D.O. Valdeorras / D.O. Bierzo — Godello</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Montenovo</span><span class="wine-grape">Godello</span></div>
+          <span class="dish-dots"></span><span class="dish-price">25,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Guitian Godello</span><span class="wine-grape">Godello</span></div>
+          <span class="dish-dots"></span><span class="dish-price">27,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">O Luar do Sil</span><span class="wine-grape">Godello</span></div>
+          <span class="dish-dots"></span><span class="dish-price">27,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Mar de Frades</span><span class="wine-grape">Godello</span></div>
+          <span class="dish-dots"></span><span class="dish-price">33,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">Polvorete</span><span class="wine-grape">Godello</span></div>
+          <span class="dish-dots"></span><span class="dish-price">23,75€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">El Zarzal</span><span class="wine-grape">Godello</span></div>
+          <span class="dish-dots"></span><span class="dish-price">27,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info"><span class="dish-name">La Revelia</span><span class="wine-grape">Godello</span></div>
+          <span class="dish-dots"></span><span class="dish-price">35,50€</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CAVAS Y ESPUMOSOS -->
+    <section class="menu-category">
+      <div class="category-header">
+        <div class="category-ornament"></div>
+        <h2 class="category-title" data-i18n="cat_cava">Cavas y Espumosos</h2>
+        <div class="category-ornament"></div>
+      </div>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Tantum Ergo Brut Nature</span>
+            <span class="wine-grape">Chardonnay, Pinot Noir</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">34,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Tantum Ergo Brut Nature Rosado</span>
+            <span class="wine-grape">Chardonnay, Pinot Noir</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">34,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Dominio de Calles Brut</span>
+            <span class="wine-grape">Macabeo, Chardonnay</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">20,75€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Juvé y Camps Cinta Púrpura Brut</span>
+            <span class="wine-grape">Macabeo, Parellada, Xarelo</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">27,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Vegamar Brut Nature</span>
+            <span class="wine-grape">Macabeo y Chardonnay</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">22,50€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Mar de Frades Brut Nature</span>
+            <span class="wine-grape">Albariño 100%</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">32,50€</span>
+        </li>
+      </ul>
+
+      <h3 class="wine-region">Champagne</h3>
+      <ul class="dish-list wine-list">
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Moët &amp; Chandon Imperial Brut</span>
+            <span class="wine-grape">Pinot Noir, Pinot Meunier, Chardonnay</span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">65,00€</span>
+        </li>
+        <li class="dish-item wine-item">
+          <div class="wine-info">
+            <span class="dish-name">Bollinger Special Cuvée</span>
+            <span class="wine-grape"></span>
+          </div>
+          <span class="dish-dots"></span>
+          <span class="dish-price">75,00€</span>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-label" data-i18n="footer_address_label">Dirección</p>
+        <p>Carrer del Moll de la Duana, s/n<br>46024 Valencia</p>
+      </div>
+      <div>
+        <p class="footer-label" data-i18n="footer_hours_label">Horario</p>
+        <p data-i18n="footer_hours">Lun: 13:30–17:30<br>Mar–Sáb: 13:30–17:30 / 20:30–00:30<br>Dom: cerrado</p>
+      </div>
+      <div>
+        <p class="footer-label" data-i18n="footer_contact_label">Contacto</p>
+        <p>96 367 26 77</p>
+      </div>
+    </div>
+    <p class="footer-copy">© Restaurante Aduana · Desde 1930</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
