@@ -8,7 +8,7 @@
   <title>Restaurante Aduana - Carta</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Cormorant+Garamond:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -25,6 +25,42 @@
     </div>
   </div>
 
+  <div class="specials-modal" id="specials-modal" hidden>
+    <div class="specials-modal__backdrop" data-close-specials></div>
+    <section class="specials-modal__panel" role="dialog" aria-modal="true" aria-labelledby="specials-title">
+      <button class="specials-modal__close" type="button" id="specials-close" data-i18n="specials_close" data-close-specials aria-label="Cerrar aviso">Cerrar</button>
+      <p class="specials-modal__eyebrow" data-i18n="specials_badge">Fuera de carta</p>
+      <h2 class="specials-modal__title" id="specials-title" data-i18n="specials_title">Tambi&eacute;n contamos con otras opciones especiales seg&uacute;n mercado.</h2>
+      <p class="specials-modal__intro" data-i18n="specials_intro">No solemos tenerlas todos los d&iacute;as, as&iacute; que te recomendamos consultar disponibilidad en sala.</p>
+
+      <div class="specials-modal__grid">
+        <article class="specials-card">
+          <p class="specials-card__title" data-i18n="specials_entrantes">Entrantes</p>
+          <ul class="specials-list">
+            <li>At&uacute;n marinado</li>
+            <li>Boquerones fritos</li>
+            <li>Huevas de sepia</li>
+            <li>Zamburi&ntilde;as</li>
+            <li>Alcachofa valenciana con jam&oacute;n y huevos</li>
+            <li>Steak tartar</li>
+          </ul>
+        </article>
+
+        <article class="specials-card">
+          <p class="specials-card__title" data-i18n="specials_fresh_fish">Pescados frescos de lonja</p>
+          <ul class="specials-list">
+            <li>Lubina</li>
+            <li>Gallo San Pedro</li>
+            <li>Rodaballo</li>
+            <li>Borriquet</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="specials-modal__note" data-i18n="specials_note">Selecci&oacute;n sujeta a disponibilidad diaria y producto fresco de mercado.</p>
+    </section>
+  </div>
+
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
@@ -38,9 +74,9 @@
       </div>
       <p class="header-tagline" data-i18n="tagline">Puerto de Valencia · Carrer del Moll de la Duana, s/n</p>
       <div class="hero-copy">
-        <p class="hero-kicker" data-i18n="hero_kicker">Cocina mediterránea frente al mar</p>
-        <h1 class="hero-title" data-i18n="hero_title">Carta digital con elegancia atemporal</h1>
-        <p class="hero-description" data-i18n="hero_description">Una experiencia más clara, refinada y cómoda para tus clientes desde el móvil.</p>
+        <p class="hero-kicker" data-i18n="hero_kicker">Tradición mediterránea junto al puerto</p>
+        <h1 class="hero-title" data-i18n="hero_title">La elegancia del Mediterráneo, servida frente al mar.</h1>
+        <p class="hero-description" data-i18n="hero_description">Una carta pensada para disfrutar el producto, la tradición y el carácter de Aduana en el Puerto de Valencia.</p>
       </div>
       <div class="hero-actions">
         <a class="hero-action hero-action--primary" href="#menu-food" data-i18n="hero_cta_menu">Ver carta</a>
@@ -942,6 +978,46 @@
     </section>
 
   </main>
+
+  <div class="selection-cart-backdrop" id="selection-cart-backdrop" hidden></div>
+
+  <div class="selection-cart" id="selection-cart">
+    <button class="selection-cart__toggle" type="button" id="selection-cart-toggle" aria-expanded="false" aria-controls="selection-cart-panel">
+      <span class="selection-cart__toggle-label" data-i18n="cart_title">Tu selección</span>
+      <span class="selection-cart__count" id="selection-cart-count">0</span>
+    </button>
+
+    <aside class="selection-cart__panel" id="selection-cart-panel" hidden>
+      <div class="selection-cart__header">
+        <div>
+          <p class="selection-cart__eyebrow" data-i18n="cart_badge">Selección</p>
+          <h2 class="selection-cart__title" data-i18n="cart_title">Tu selección</h2>
+        </div>
+        <button class="selection-cart__clear" type="button" id="selection-cart-clear" data-i18n="cart_clear">Vaciar</button>
+      </div>
+
+      <p class="selection-cart__note" data-i18n="cart_note">Añade platos para llevar una selección cómoda y enseñarla al camarero.</p>
+
+      <p class="selection-cart__empty" id="selection-cart-empty" data-i18n="cart_empty">Todavía no has añadido ningún plato.</p>
+      <ul class="selection-cart__list" id="selection-cart-list"></ul>
+    </aside>
+  </div>
+
+  <div class="quick-nav" id="quick-nav">
+    <div class="quick-nav__menu" id="quick-nav-menu" hidden>
+      <button class="quick-nav__link" type="button" data-target="specials" data-i18n="specials_badge">Fuera de carta</button>
+      <button class="quick-nav__link" type="button" data-target="cat-hot" data-i18n="cat_hot_tapas">Tapas Calientes</button>
+      <button class="quick-nav__link" type="button" data-target="cat-cold" data-i18n="cat_cold_tapas">Tapas Frías</button>
+      <button class="quick-nav__link" type="button" data-target="cat-rice" data-i18n="cat_rice">Arroces</button>
+      <button class="quick-nav__link" type="button" data-target="cat-fish" data-i18n="cat_fish">Pescados</button>
+      <button class="quick-nav__link" type="button" data-target="cat-desserts" data-i18n="cat_desserts">Postres</button>
+      <button class="quick-nav__link" type="button" data-target="menu-wine" data-card="wine" data-i18n="nav_wine">Vinos</button>
+    </div>
+    <button class="quick-nav__toggle" type="button" id="quick-nav-toggle" aria-expanded="false" aria-controls="quick-nav-menu">
+      <span class="quick-nav__icon" aria-hidden="true">+</span>
+      <span class="sr-only" data-i18n="quick_nav_label">Accesos rápidos</span>
+    </button>
+  </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">

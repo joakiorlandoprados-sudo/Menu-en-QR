@@ -12,9 +12,9 @@ const translations = {
     nav_food: "Carta",
     nav_wine: "Vinos",
     allergen: "* Disponemos de carta de alérgenos. Pídela a nuestro camarero/a.",
-    hero_kicker: "Cocina mediterránea frente al mar",
-    hero_title: "Carta digital con elegancia atemporal",
-    hero_description: "Una experiencia más clara, refinada y cómoda para tus clientes desde el móvil.",
+    hero_kicker: "Tradición mediterránea junto al puerto",
+    hero_title: "La elegancia del Mediterráneo, servida frente al mar.",
+    hero_description: "Una carta pensada para disfrutar el producto, la tradición y el carácter de Aduana en el Puerto de Valencia.",
     hero_cta_menu: "Ver carta",
     hero_cta_book: "Llamar al restaurante",
     service_location_label: "Ubicación",
@@ -22,6 +22,20 @@ const translations = {
     service_hours_label: "Horario",
     service_hours_text: "Comidas y cenas de martes a sábado",
     service_phone_label: "Reservas",
+    quick_nav_label: "Accesos rápidos",
+    cart_badge: "Selección",
+    cart_title: "Tu selección",
+    cart_clear: "Vaciar",
+    cart_note: "Añade platos para llevar una selección cómoda y enseñarla al camarero.",
+    cart_empty: "Todavía no has añadido ningún plato.",
+    cart_add: "Añadir",
+    specials_badge: "Fuera de carta",
+    specials_title: "También contamos con otras opciones especiales según mercado.",
+    specials_intro: "No solemos tenerlas todos los días, así que te recomendamos consultar disponibilidad en sala.",
+    specials_entrantes: "Entrantes",
+    specials_fresh_fish: "Pescados frescos de lonja",
+    specials_note: "Selección sujeta a disponibilidad diaria y producto fresco de mercado.",
+    specials_close: "Cerrar",
 
     // Categories – food
     cat_hot_tapas:  "Tapas Calientes",
@@ -118,9 +132,9 @@ const translations = {
     nav_food: "Menu",
     nav_wine: "Wines",
     allergen: "* We have an allergen menu available. Please ask your waiter.",
-    hero_kicker: "Mediterranean cuisine by the sea",
-    hero_title: "A digital menu with timeless elegance",
-    hero_description: "A clearer, more refined and comfortable experience for your guests on mobile.",
+    hero_kicker: "Mediterranean tradition by the harbor",
+    hero_title: "The elegance of the Mediterranean, served by the sea.",
+    hero_description: "A menu designed to celebrate product, tradition and the character of Aduana in the Port of Valencia.",
     hero_cta_menu: "View menu",
     hero_cta_book: "Call the restaurant",
     service_location_label: "Location",
@@ -128,6 +142,20 @@ const translations = {
     service_hours_label: "Hours",
     service_hours_text: "Lunch and dinner from Tuesday to Saturday",
     service_phone_label: "Reservations",
+    quick_nav_label: "Quick links",
+    cart_badge: "Selection",
+    cart_title: "Your selection",
+    cart_clear: "Clear",
+    cart_note: "Add dishes to keep an easy selection and show it to your waiter.",
+    cart_empty: "You have not added any dishes yet.",
+    cart_add: "Add",
+    specials_badge: "Off menu",
+    specials_title: "We also offer special options depending on the daily market.",
+    specials_intro: "We do not have them every day, so we recommend checking availability with our team.",
+    specials_entrantes: "Starters",
+    specials_fresh_fish: "Fresh market fish",
+    specials_note: "Selection subject to daily availability and fresh market catch.",
+    specials_close: "Close",
     cat_hot_tapas:  "Hot Tapas",
     cat_cold_tapas: "Cold Tapas",
     cat_salads:     "Salads",
@@ -202,9 +230,9 @@ const translations = {
     nav_food: "Carte",
     nav_wine: "Vins",
     allergen: "* Nous disposons d'une carte des allergènes. Demandez à votre serveur.",
-    hero_kicker: "Cuisine méditerranéenne face à la mer",
-    hero_title: "Une carte digitale à l'élégance intemporelle",
-    hero_description: "Une expérience plus claire, raffinée et agréable pour vos clients sur mobile.",
+    hero_kicker: "Tradition méditerranéenne au bord du port",
+    hero_title: "L'élégance de la Méditerranée, servie face à la mer.",
+    hero_description: "Une carte pensée pour savourer le produit, la tradition et le caractère d'Aduana au Port de Valence.",
     hero_cta_menu: "Voir la carte",
     hero_cta_book: "Appeler le restaurant",
     service_location_label: "Emplacement",
@@ -212,6 +240,20 @@ const translations = {
     service_hours_label: "Horaires",
     service_hours_text: "Déjeuners et dîners du mardi au samedi",
     service_phone_label: "Réservations",
+    quick_nav_label: "Accès rapides",
+    cart_badge: "Sélection",
+    cart_title: "Votre sélection",
+    cart_clear: "Vider",
+    cart_note: "Ajoutez des plats pour garder une sélection pratique et la montrer au serveur.",
+    cart_empty: "Vous n'avez encore ajouté aucun plat.",
+    cart_add: "Ajouter",
+    specials_badge: "Hors carte",
+    specials_title: "Nous proposons aussi d'autres suggestions spéciales selon le marché.",
+    specials_intro: "Nous ne les avons pas tous les jours, nous vous recommandons donc de consulter la disponibilité en salle.",
+    specials_entrantes: "Entrées",
+    specials_fresh_fish: "Poissons frais de la criée",
+    specials_note: "Sélection soumise à la disponibilité quotidienne et au produit frais du marché.",
+    specials_close: "Fermer",
     cat_hot_tapas:  "Tapas Chaudes",
     cat_cold_tapas: "Tapas Froides",
     cat_salads:     "Salades",
@@ -286,9 +328,9 @@ const translations = {
     nav_food: "Menù",
     nav_wine: "Vini",
     allergen: "* Disponiamo di una carta degli allergeni. Chiedete al vostro cameriere.",
-    hero_kicker: "Cucina mediterranea sul mare",
-    hero_title: "Un menu digitale dall'eleganza senza tempo",
-    hero_description: "Un'esperienza più chiara, raffinata e comoda per i tuoi clienti da mobile.",
+    hero_kicker: "Tradizione mediterranea accanto al porto",
+    hero_title: "L'eleganza del Mediterraneo, servita di fronte al mare.",
+    hero_description: "Un menu pensato per valorizzare il prodotto, la tradizione e il carattere di Aduana nel Porto di Valencia.",
     hero_cta_menu: "Vedi menu",
     hero_cta_book: "Chiama il ristorante",
     service_location_label: "Posizione",
@@ -296,6 +338,20 @@ const translations = {
     service_hours_label: "Orari",
     service_hours_text: "Pranzi e cene da martedì a sabato",
     service_phone_label: "Prenotazioni",
+    quick_nav_label: "Accessi rapidi",
+    cart_badge: "Selezione",
+    cart_title: "La tua selezione",
+    cart_clear: "Svuota",
+    cart_note: "Aggiungi i piatti per mantenere una selezione comoda da mostrare al cameriere.",
+    cart_empty: "Non hai ancora aggiunto nessun piatto.",
+    cart_add: "Aggiungi",
+    specials_badge: "Fuori menu",
+    specials_title: "Disponiamo anche di altre proposte speciali secondo il mercato del giorno.",
+    specials_intro: "Non le abbiamo tutti i giorni, quindi ti consigliamo di verificarne la disponibilità in sala.",
+    specials_entrantes: "Antipasti",
+    specials_fresh_fish: "Pesce fresco di mercato",
+    specials_note: "Selezione soggetta a disponibilità giornaliera e prodotto fresco di mercato.",
+    specials_close: "Chiudi",
     cat_hot_tapas:  "Tapas Calde",
     cat_cold_tapas: "Tapas Fredde",
     cat_salads:     "Insalate",
@@ -370,9 +426,9 @@ const translations = {
     nav_food: "Speisekarte",
     nav_wine: "Weine",
     allergen: "* Wir haben eine Allergenkarte. Bitte fragen Sie Ihren Kellner.",
-    hero_kicker: "Mediterrane Küche direkt am Meer",
-    hero_title: "Digitale Speisekarte mit zeitloser Eleganz",
-    hero_description: "Ein klareres, raffinierteres und angenehmeres mobiles Erlebnis für Ihre Gäste.",
+    hero_kicker: "Mediterrane Tradition am Hafen",
+    hero_title: "Die Eleganz des Mittelmeers, serviert direkt am Meer.",
+    hero_description: "Eine Karte, die Produkt, Tradition und den Charakter von Aduana im Hafen von Valencia in Szene setzt.",
     hero_cta_menu: "Zur Karte",
     hero_cta_book: "Restaurant anrufen",
     service_location_label: "Standort",
@@ -380,6 +436,20 @@ const translations = {
     service_hours_label: "Öffnungszeiten",
     service_hours_text: "Mittag- und Abendservice von Dienstag bis Samstag",
     service_phone_label: "Reservierungen",
+    quick_nav_label: "Schnellzugriffe",
+    cart_badge: "Auswahl",
+    cart_title: "Ihre Auswahl",
+    cart_clear: "Leeren",
+    cart_note: "Fügen Sie Gerichte hinzu, um eine praktische Auswahl zu behalten und sie dem Service zu zeigen.",
+    cart_empty: "Sie haben noch keine Gerichte hinzugefügt.",
+    cart_add: "Hinzufügen",
+    specials_badge: "Außer Karte",
+    specials_title: "Je nach Tagesmarkt bieten wir auch weitere besondere Optionen an.",
+    specials_intro: "Diese haben wir nicht jeden Tag, deshalb empfehlen wir, die Verfügbarkeit vor Ort zu erfragen.",
+    specials_entrantes: "Vorspeisen",
+    specials_fresh_fish: "Frischer Markt- und Tagesfisch",
+    specials_note: "Auswahl je nach täglicher Verfügbarkeit und frischem Marktprodukt.",
+    specials_close: "Schließen",
     cat_hot_tapas:  "Warme Tapas",
     cat_cold_tapas: "Kalte Tapas",
     cat_salads:     "Salate",
@@ -468,6 +538,8 @@ function applyTranslation(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+
+  renderSelectionCart();
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -483,6 +555,280 @@ const btnWine = document.getElementById('btn-wine');
 const menuFood = document.getElementById('menu-food');
 const menuWine = document.getElementById('menu-wine');
 const shortcuts = document.querySelector('.section-shortcuts');
+const specialsModal = document.getElementById('specials-modal');
+const specialsCloseButton = document.getElementById('specials-close');
+const selectionCartBackdrop = document.getElementById('selection-cart-backdrop');
+const selectionCart = document.getElementById('selection-cart');
+const selectionCartToggle = document.getElementById('selection-cart-toggle');
+const selectionCartPanel = document.getElementById('selection-cart-panel');
+const selectionCartCount = document.getElementById('selection-cart-count');
+const selectionCartList = document.getElementById('selection-cart-list');
+const selectionCartEmpty = document.getElementById('selection-cart-empty');
+const selectionCartClear = document.getElementById('selection-cart-clear');
+const quickNav = document.getElementById('quick-nav');
+const quickNavMenu = document.getElementById('quick-nav-menu');
+const quickNavToggle = document.getElementById('quick-nav-toggle');
+const CART_STORAGE_KEY = 'aduana-selection-cart';
+
+let selectionCartItems = loadSelectionCart();
+
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function loadSelectionCart() {
+  try {
+    const raw = localStorage.getItem(CART_STORAGE_KEY);
+    if (!raw) return [];
+
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed
+      .filter(item => item && item.id && item.qty > 0)
+      .map(item => ({
+        id: item.id,
+        label: item.label,
+        labelKey: item.labelKey || '',
+        qty: Number(item.qty) || 1,
+      }));
+  } catch {
+    return [];
+  }
+}
+
+function saveSelectionCart() {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(selectionCartItems));
+}
+
+function getSelectionItemLabel(item) {
+  if (item.labelKey && translations[currentLang]?.[item.labelKey]) {
+    return translations[currentLang][item.labelKey];
+  }
+
+  return item.label;
+}
+
+function createAddButton() {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'menu-add-btn';
+  button.setAttribute('data-i18n', 'cart_add');
+  button.textContent = translations[currentLang]?.cart_add || 'Añadir';
+  return button;
+}
+
+function enhanceSelectionSources() {
+  document.querySelectorAll('#menu-food .dish-item').forEach((item, index) => {
+    if (item.querySelector('.menu-add-btn')) return;
+
+    const nameEl = item.querySelector('.dish-name');
+    if (!nameEl) return;
+
+    item.dataset.selectionId = nameEl.dataset.i18n
+      ? `menu:${nameEl.dataset.i18n}`
+      : `menu:${slugify(nameEl.textContent)}:${index}`;
+    item.dataset.selectionKey = nameEl.dataset.i18n || '';
+    item.dataset.selectionLabel = nameEl.textContent.trim();
+
+    item.appendChild(createAddButton());
+  });
+
+  document.querySelectorAll('.specials-list li').forEach((item, index) => {
+    if (item.querySelector('.menu-add-btn')) return;
+
+    const label = item.textContent.trim();
+    item.dataset.selectionId = `special:${slugify(label)}:${index}`;
+    item.dataset.selectionLabel = label;
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'selection-source__label';
+    labelSpan.textContent = label;
+
+    item.textContent = '';
+    item.appendChild(labelSpan);
+    item.appendChild(createAddButton());
+  });
+}
+
+function openSelectionCart() {
+  if (!selectionCartPanel || !selectionCartToggle || !selectionCartBackdrop) return;
+  selectionCartBackdrop.hidden = false;
+  selectionCartPanel.hidden = false;
+  selectionCartToggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeSelectionCart() {
+  if (!selectionCartPanel || !selectionCartToggle || !selectionCartBackdrop) return;
+  selectionCartBackdrop.hidden = true;
+  selectionCartPanel.hidden = true;
+  selectionCartToggle.setAttribute('aria-expanded', 'false');
+}
+
+function toggleSelectionCart() {
+  if (!selectionCartPanel) return;
+  if (selectionCartPanel.hidden) {
+    openSelectionCart();
+  } else {
+    closeSelectionCart();
+  }
+}
+
+function renderSelectionCart() {
+  if (!selectionCartList || !selectionCartEmpty || !selectionCartCount || !selectionCartClear) return;
+
+  const totalItems = selectionCartItems.reduce((sum, item) => sum + item.qty, 0);
+  selectionCartCount.textContent = String(totalItems);
+  selectionCartList.innerHTML = '';
+
+  if (selectionCartItems.length === 0) {
+    selectionCartEmpty.hidden = false;
+    selectionCartClear.disabled = true;
+    return;
+  }
+
+  selectionCartEmpty.hidden = true;
+  selectionCartClear.disabled = false;
+
+  selectionCartItems.forEach(item => {
+    const cartItem = document.createElement('li');
+    cartItem.className = 'selection-cart__item';
+
+    const row = document.createElement('div');
+    row.className = 'selection-cart__item-row';
+
+    const name = document.createElement('span');
+    name.className = 'selection-cart__item-name';
+    name.textContent = getSelectionItemLabel(item);
+
+    const qty = document.createElement('div');
+    qty.className = 'selection-cart__qty';
+
+    const decreaseButton = document.createElement('button');
+    decreaseButton.type = 'button';
+    decreaseButton.className = 'selection-cart__qty-btn';
+    decreaseButton.dataset.action = 'decrease';
+    decreaseButton.dataset.id = item.id;
+    decreaseButton.textContent = '−';
+
+    const value = document.createElement('span');
+    value.className = 'selection-cart__qty-value';
+    value.textContent = String(item.qty);
+
+    const increaseButton = document.createElement('button');
+    increaseButton.type = 'button';
+    increaseButton.className = 'selection-cart__qty-btn';
+    increaseButton.dataset.action = 'increase';
+    increaseButton.dataset.id = item.id;
+    increaseButton.textContent = '+';
+
+    qty.append(decreaseButton, value, increaseButton);
+    row.append(name, qty);
+    cartItem.appendChild(row);
+    selectionCartList.appendChild(cartItem);
+  });
+}
+
+function addSelectionItem(itemData) {
+  if (!itemData?.id) return;
+
+  const existingItem = selectionCartItems.find(item => item.id === itemData.id);
+
+  if (existingItem) {
+    existingItem.qty += 1;
+  } else {
+    selectionCartItems.push({
+      id: itemData.id,
+      label: itemData.label,
+      labelKey: itemData.labelKey || '',
+      qty: 1,
+    });
+  }
+
+  saveSelectionCart();
+  renderSelectionCart();
+}
+
+function updateSelectionItem(itemId, change) {
+  const item = selectionCartItems.find(entry => entry.id === itemId);
+  if (!item) return;
+
+  item.qty += change;
+  selectionCartItems = selectionCartItems.filter(entry => entry.qty > 0);
+
+  saveSelectionCart();
+  renderSelectionCart();
+}
+
+function clearSelectionCart() {
+  selectionCartItems = [];
+  saveSelectionCart();
+  renderSelectionCart();
+}
+
+function getSourceItemData(source) {
+  if (!source) return null;
+
+  return {
+    id: source.dataset.selectionId,
+    label: source.dataset.selectionLabel || '',
+    labelKey: source.dataset.selectionKey || '',
+  };
+}
+
+function scrollToSection(targetId) {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  const stickyOffset = window.innerWidth <= 520 ? 110 : 132;
+  const targetTop = target.getBoundingClientRect().top + window.scrollY - stickyOffset;
+
+  window.scrollTo({
+    top: Math.max(targetTop, 0),
+    behavior: 'smooth',
+  });
+}
+
+function openSpecialsModal() {
+  if (!specialsModal) return;
+  specialsModal.hidden = false;
+  document.body.classList.add('modal-open');
+  specialsCloseButton?.focus();
+}
+
+function closeSpecialsModal() {
+  if (!specialsModal) return;
+  specialsModal.hidden = true;
+  document.body.classList.remove('modal-open');
+}
+
+function openQuickNav() {
+  if (!quickNav || !quickNavMenu || !quickNavToggle) return;
+  quickNavMenu.hidden = false;
+  quickNav.classList.add('quick-nav--open');
+  quickNavToggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeQuickNav() {
+  if (!quickNav || !quickNavMenu || !quickNavToggle) return;
+  quickNavMenu.hidden = true;
+  quickNav.classList.remove('quick-nav--open');
+  quickNavToggle.setAttribute('aria-expanded', 'false');
+}
+
+function toggleQuickNav() {
+  if (!quickNavMenu) return;
+  if (quickNavMenu.hidden) {
+    openQuickNav();
+  } else {
+    closeQuickNav();
+  }
+}
 
 function setActiveCard(section) {
   const showWine = section === 'wine';
@@ -491,10 +837,6 @@ function setActiveCard(section) {
   btnWine.classList.toggle('active', showWine);
   menuFood.classList.toggle('active', !showWine);
   menuWine.classList.toggle('active', showWine);
-
-  if (shortcuts) {
-    shortcuts.hidden = showWine;
-  }
 
   localStorage.setItem('aduana-active-card', section);
 }
@@ -505,12 +847,116 @@ btnFood.addEventListener('click', () => {
 
 btnWine.addEventListener('click', () => {
   setActiveCard('wine');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  requestAnimationFrame(() => scrollToSection('menu-wine'));
+});
+
+selectionCartToggle?.addEventListener('click', event => {
+  event.stopPropagation();
+  toggleSelectionCart();
+});
+
+selectionCartClear?.addEventListener('click', () => {
+  clearSelectionCart();
+});
+
+selectionCartBackdrop?.addEventListener('pointerdown', closeSelectionCart);
+
+document.querySelectorAll('.shortcut-chip').forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+
+    const targetId = href.slice(1);
+    setActiveCard('food');
+    requestAnimationFrame(() => scrollToSection(targetId));
+  });
+});
+
+quickNavToggle?.addEventListener('click', event => {
+  event.stopPropagation();
+  toggleQuickNav();
+});
+
+document.addEventListener('click', event => {
+  const addButton = event.target.closest('.menu-add-btn');
+  if (!addButton) return;
+
+  const source = addButton.closest('.dish-item, .specials-list li');
+  const itemData = getSourceItemData(source);
+  addSelectionItem(itemData);
+});
+
+selectionCartList?.addEventListener('click', event => {
+  const control = event.target.closest('.selection-cart__qty-btn');
+  if (!control) return;
+
+  const itemId = control.dataset.id;
+  const action = control.dataset.action;
+  const change = action === 'increase' ? 1 : -1;
+
+  updateSelectionItem(itemId, change);
+});
+
+document.querySelectorAll('.quick-nav__link').forEach(link => {
+  link.addEventListener('click', () => {
+    const targetId = link.dataset.target;
+    const targetCard = link.dataset.card;
+
+    closeQuickNav();
+
+    if (targetId === 'specials') {
+      openSpecialsModal();
+      return;
+    }
+
+    if (targetCard === 'wine') {
+      setActiveCard('wine');
+      requestAnimationFrame(() => scrollToSection(targetId));
+      return;
+    }
+
+    setActiveCard('food');
+    requestAnimationFrame(() => scrollToSection(targetId));
+  });
+});
+
+document.addEventListener('click', event => {
+  if (!quickNav || quickNavMenu?.hidden) return;
+  if (!quickNav.contains(event.target)) {
+    closeQuickNav();
+  }
+});
+
+document.querySelectorAll('[data-close-specials]').forEach(element => {
+  element.addEventListener('click', closeSpecialsModal);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && specialsModal && !specialsModal.hidden) {
+    closeSpecialsModal();
+    return;
+  }
+
+  if (event.key === 'Escape' && quickNavMenu && !quickNavMenu.hidden) {
+    closeQuickNav();
+    return;
+  }
+
+  if (event.key === 'Escape' && selectionCartPanel && !selectionCartPanel.hidden) {
+    closeSelectionCart();
+  }
 });
 
 /* ---- Init ---- */
 const savedLang = localStorage.getItem('aduana-lang') || 'es';
 const savedCard = localStorage.getItem('aduana-active-card') || 'food';
 
+enhanceSelectionSources();
 applyTranslation(savedLang);
 setActiveCard(savedCard);
+renderSelectionCart();
+window.addEventListener('load', () => {
+  window.setTimeout(openSpecialsModal, 220);
+});
