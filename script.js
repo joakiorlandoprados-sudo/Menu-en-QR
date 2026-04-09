@@ -949,10 +949,62 @@ document.addEventListener('keydown', event => {
   }
 });
 
+// ── Fuera de carta dinámico desde Google Sheets ──
+const API_FUERA_DE_CARTA = 'https://script.google.com/macros/s/AKfycbx5kr9f2nja8-vigb--mBbwQd0Z_becR5hbybcXSkUU3Ng_7_QKVOikqflENRfylRuy/exec';
+
+function cargarFueraDeCarta() {
+  const grid = document.getElementById('specials-grid');
+  if (!grid) return;
+
+  // Muestra loading mientras espera
+  grid.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando disponibilidad...</p>';
+
+  fetch(API_FUERA_DE_CARTA)
+    .then(res => res.json())
+    .then(categorias => {
+      grid.innerHTML = '';
+      const nombres = Object.keys(categorias);
+
+      if (nombres.length === 0) {
+        grid.innerHTML = '<p style="text-align:center;opacity:0.6;">Sin disponibilidad especial hoy.</p>';
+        return;
+      }
+
+      nombres.forEach(categoria => {
+        const article = document.createElement('article');
+        article.className = 'specials-card';
+
+        const titulo = document.createElement('p');
+        titulo.className = 'specials-card__title';
+        titulo.textContent = categoria;
+
+        const lista = document.createElement('ul');
+        lista.className = 'specials-list';
+
+        categorias[categoria].forEach(plato => {
+          const li = document.createElement('li');
+          li.textContent = plato;
+          lista.appendChild(li);
+        });
+
+        article.appendChild(titulo);
+        article.appendChild(lista);
+        grid.appendChild(article);
+      });
+
+      enhanceSelectionSources();
+    })
+    .catch(() => {
+      grid.innerHTML = '<p style="text-align:center;opacity:0.6;">No se pudo cargar la disponibilidad.</p>';
+    });
+}
+
+
 /* ---- Init ---- */
 const savedLang = localStorage.getItem('aduana-lang') || 'es';
 const savedCard = localStorage.getItem('aduana-active-card') || 'food';
 
+cargarFueraDeCarta();
 enhanceSelectionSources();
 applyTranslation(savedLang);
 setActiveCard(savedCard);
