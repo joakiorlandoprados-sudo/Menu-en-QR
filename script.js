@@ -36,6 +36,9 @@ const translations = {
     specials_fresh_fish: "Pescados frescos de lonja",
     specials_note: "Selección sujeta a disponibilidad diaria y producto fresco de mercado.",
     specials_close: "Cerrar",
+    specials_loading: "Cargando disponibilidad...",
+    specials_empty: "Sin disponibilidad especial hoy.",
+    specials_error: "No se pudo cargar la disponibilidad.",
 
     // Categories – food
     cat_hot_tapas:  "Tapas Calientes",
@@ -156,6 +159,9 @@ const translations = {
     specials_fresh_fish: "Fresh market fish",
     specials_note: "Selection subject to daily availability and fresh market catch.",
     specials_close: "Close",
+    specials_loading: "Loading availability...",
+    specials_empty: "No special availability today.",
+    specials_error: "Availability could not be loaded.",
     cat_hot_tapas:  "Hot Tapas",
     cat_cold_tapas: "Cold Tapas",
     cat_salads:     "Salads",
@@ -254,6 +260,9 @@ const translations = {
     specials_fresh_fish: "Poissons frais de la criée",
     specials_note: "Sélection soumise à la disponibilité quotidienne et au produit frais du marché.",
     specials_close: "Fermer",
+    specials_loading: "Chargement des disponibilités...",
+    specials_empty: "Aucune suggestion spéciale aujourd'hui.",
+    specials_error: "Impossible de charger les disponibilités.",
     cat_hot_tapas:  "Tapas Chaudes",
     cat_cold_tapas: "Tapas Froides",
     cat_salads:     "Salades",
@@ -352,6 +361,9 @@ const translations = {
     specials_fresh_fish: "Pesce fresco di mercato",
     specials_note: "Selezione soggetta a disponibilità giornaliera e prodotto fresco di mercato.",
     specials_close: "Chiudi",
+    specials_loading: "Caricamento disponibilità...",
+    specials_empty: "Nessuna proposta speciale oggi.",
+    specials_error: "Impossibile caricare la disponibilità.",
     cat_hot_tapas:  "Tapas Calde",
     cat_cold_tapas: "Tapas Fredde",
     cat_salads:     "Insalate",
@@ -450,6 +462,9 @@ const translations = {
     specials_fresh_fish: "Frischer Markt- und Tagesfisch",
     specials_note: "Auswahl je nach täglicher Verfügbarkeit und frischem Marktprodukt.",
     specials_close: "Schließen",
+    specials_loading: "Verfügbarkeit wird geladen...",
+    specials_empty: "Heute keine besonderen Empfehlungen verfügbar.",
+    specials_error: "Die Verfügbarkeit konnte nicht geladen werden.",
     cat_hot_tapas:  "Warme Tapas",
     cat_cold_tapas: "Kalte Tapas",
     cat_salads:     "Salate",
@@ -520,6 +535,224 @@ const translations = {
 
 /* ---- Language switching ---- */
 let currentLang = 'es';
+let specialsCatalog = [];
+let specialsStatus = 'idle';
+
+const specialsDictionary = {
+  categories: {
+    Entrantes: {
+      es: 'Entrantes',
+      en: 'Starters',
+      fr: 'Entrées',
+      it: 'Antipasti',
+      de: 'Vorspeisen',
+    },
+    Pescados: {
+      es: 'Pescados',
+      en: 'Fish',
+      fr: 'Poissons',
+      it: 'Pesce',
+      de: 'Fisch',
+    },
+    'Pescados frescos de lonja': {
+      es: 'Pescados frescos de lonja',
+      en: 'Fresh market fish',
+      fr: 'Poissons frais de la criée',
+      it: 'Pesce fresco di mercato',
+      de: 'Frischer Markt- und Tagesfisch',
+    },
+  },
+  items: {
+    'Atún marinado': {
+      es: 'Atún marinado',
+      en: 'Marinated tuna',
+      fr: 'Thon mariné',
+      it: 'Tonno marinato',
+      de: 'Marinierter Thunfisch',
+    },
+    'Boquerones fritos': {
+      es: 'Boquerones fritos',
+      en: 'Fried anchovies',
+      fr: 'Anchois frits',
+      it: 'Acciughe fritte',
+      de: 'Frittierte Sardellen',
+    },
+    'Huevas de sepia': {
+      es: 'Huevas de sepia',
+      en: 'Cuttlefish roe',
+      fr: 'Oeufs de seiche',
+      it: 'Uova di seppia',
+      de: 'Sepia-Rogen',
+    },
+    Zamburiñas: {
+      es: 'Zamburiñas',
+      en: 'Queen scallops',
+      fr: 'Pétoncles',
+      it: 'Capesante',
+      de: 'Kammmuscheln',
+    },
+    'Alcachofa valenciana con jamón y huevo': {
+      es: 'Alcachofa valenciana con jamón y huevo',
+      en: 'Valencian artichoke with ham and egg',
+      fr: 'Artichaut valencien au jambon et oeuf',
+      it: 'Carciofo valenciano con prosciutto e uovo',
+      de: 'Valencianische Artischocke mit Schinken und Ei',
+    },
+    'Alcachofa valenciana con jamón y huevos': {
+      es: 'Alcachofa valenciana con jamón y huevos',
+      en: 'Valencian artichoke with ham and eggs',
+      fr: 'Artichaut valencien au jambon et oeufs',
+      it: 'Carciofo valenciano con prosciutto e uova',
+      de: 'Valencianische Artischocke mit Schinken und Eiern',
+    },
+    'Steak tartar': {
+      es: 'Steak tartar',
+      en: 'Steak tartare',
+      fr: 'Steak tartare',
+      it: 'Steak tartare',
+      de: 'Steak Tatar',
+    },
+    Lubina: {
+      es: 'Lubina',
+      en: 'Sea bass',
+      fr: 'Bar',
+      it: 'Spigola',
+      de: 'Wolfsbarsch',
+    },
+    'Gallo San Pedro': {
+      es: 'Gallo San Pedro',
+      en: 'John Dory',
+      fr: 'Saint-Pierre',
+      it: 'Pesce San Pietro',
+      de: 'Petersfisch',
+    },
+    Rodaballo: {
+      es: 'Rodaballo',
+      en: 'Turbot',
+      fr: 'Turbot',
+      it: 'Rombo chiodato',
+      de: 'Steinbutt',
+    },
+    Borriquet: {
+      es: 'Borriquet',
+      en: 'Borriquet',
+      fr: 'Borriquet',
+      it: 'Borriquet',
+      de: 'Borriquet',
+    },
+  },
+};
+
+function getSpecialsBaseLabel(value) {
+  if (typeof value === 'string') {
+    return value.trim();
+  }
+
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return '';
+  }
+
+  const fallback = [value.es, value.label, value.name, value.title, value.value]
+    .find(entry => typeof entry === 'string' && entry.trim());
+
+  return fallback ? fallback.trim() : '';
+}
+
+function getSpecialsDisplayLabel(type, value) {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    const directValue = value[currentLang] || value.es;
+    if (typeof directValue === 'string' && directValue.trim()) {
+      return directValue.trim();
+    }
+  }
+
+  const baseLabel = getSpecialsBaseLabel(value);
+  const dictionary = type === 'category' ? specialsDictionary.categories : specialsDictionary.items;
+
+  return dictionary[baseLabel]?.[currentLang] || dictionary[baseLabel]?.es || baseLabel;
+}
+
+function getSpecialsUiText(key) {
+  return translations[currentLang]?.[key] || translations.es[key] || '';
+}
+
+function renderSpecialsStatus(status) {
+  const grid = document.getElementById('specials-grid');
+  if (!grid) return;
+
+  specialsStatus = status;
+
+  const statusKeyByState = {
+    loading: 'specials_loading',
+    empty: 'specials_empty',
+    error: 'specials_error',
+  };
+
+  const messageKey = statusKeyByState[status];
+  if (!messageKey) return;
+
+  grid.innerHTML = '';
+
+  const statusMessage = document.createElement('p');
+  statusMessage.className = 'specials-grid__status';
+  statusMessage.textContent = getSpecialsUiText(messageKey);
+  grid.appendChild(statusMessage);
+}
+
+function renderSpecialsGrid() {
+  const grid = document.getElementById('specials-grid');
+  if (!grid || specialsStatus === 'idle') return;
+
+  if (specialsStatus !== 'ready') {
+    renderSpecialsStatus(specialsStatus);
+    return;
+  }
+
+  grid.innerHTML = '';
+
+  specialsCatalog.forEach((category, categoryIndex) => {
+    const categoryLabel = getSpecialsBaseLabel(category.label);
+    if (!categoryLabel) return;
+
+    const article = document.createElement('article');
+    article.className = 'specials-card';
+
+    const title = document.createElement('p');
+    title.className = 'specials-card__title';
+    title.textContent = getSpecialsDisplayLabel('category', category.label);
+
+    const list = document.createElement('ul');
+    list.className = 'specials-list';
+
+    category.items.forEach((item, itemIndex) => {
+      const itemLabel = getSpecialsBaseLabel(item);
+      if (!itemLabel) return;
+
+      const li = document.createElement('li');
+      li.dataset.selectionId = `special:${slugify(itemLabel)}:${categoryIndex}:${itemIndex}`;
+      li.dataset.selectionKey = `special:${itemLabel}`;
+      li.dataset.selectionLabel = itemLabel;
+
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'selection-source__label';
+      labelSpan.textContent = getSpecialsDisplayLabel('item', item);
+
+      li.appendChild(labelSpan);
+      li.appendChild(createAddButton());
+      list.appendChild(li);
+    });
+
+    if (!list.children.length) return;
+
+    article.appendChild(title);
+    article.appendChild(list);
+    grid.appendChild(article);
+  });
+
+  if (!grid.children.length) {
+    renderSpecialsStatus('empty');
+  }
+}
 
 function applyTranslation(lang) {
   const t = translations[lang];
@@ -539,6 +772,7 @@ function applyTranslation(lang) {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
+  renderSpecialsGrid();
   renderSelectionCart();
 }
 
@@ -594,7 +828,7 @@ function loadSelectionCart() {
       .map(item => ({
         id: item.id,
         label: item.label,
-        labelKey: item.labelKey || '',
+        labelKey: item.labelKey || (String(item.id).startsWith('special:') && item.label ? `special:${item.label}` : ''),
         qty: Number(item.qty) || 1,
       }));
   } catch {
@@ -607,6 +841,11 @@ function saveSelectionCart() {
 }
 
 function getSelectionItemLabel(item) {
+  if (item.labelKey?.startsWith('special:')) {
+    const specialLabel = item.labelKey.slice('special:'.length);
+    return getSpecialsDisplayLabel('item', specialLabel) || item.label;
+  }
+
   if (item.labelKey && translations[currentLang]?.[item.labelKey]) {
     return translations[currentLang][item.labelKey];
   }
@@ -636,22 +875,6 @@ function enhanceSelectionSources() {
     item.dataset.selectionKey = nameEl.dataset.i18n || '';
     item.dataset.selectionLabel = nameEl.textContent.trim();
 
-    item.appendChild(createAddButton());
-  });
-
-  document.querySelectorAll('.specials-list li').forEach((item, index) => {
-    if (item.querySelector('.menu-add-btn')) return;
-
-    const label = item.textContent.trim();
-    item.dataset.selectionId = `special:${slugify(label)}:${index}`;
-    item.dataset.selectionLabel = label;
-
-    const labelSpan = document.createElement('span');
-    labelSpan.className = 'selection-source__label';
-    labelSpan.textContent = label;
-
-    item.textContent = '';
-    item.appendChild(labelSpan);
     item.appendChild(createAddButton());
   });
 }
@@ -952,50 +1175,49 @@ document.addEventListener('keydown', event => {
 // ── Fuera de carta dinámico desde Google Sheets ──
 const API_FUERA_DE_CARTA = 'https://script.google.com/macros/s/AKfycbx5kr9f2nja8-vigb--mBbwQd0Z_becR5hbybcXSkUU3Ng_7_QKVOikqflENRfylRuy/exec';
 
-function cargarFueraDeCarta() {
-  const grid = document.getElementById('specials-grid');
-  if (!grid) return;
+function normalizeSpecialsCatalog(payload) {
+  if (Array.isArray(payload)) {
+    return payload
+      .map(entry => ({
+        label: entry?.categoria || entry?.category || entry?.title || entry?.name || '',
+        items: Array.isArray(entry?.platos) ? entry.platos : Array.isArray(entry?.items) ? entry.items : [],
+      }))
+      .filter(category => getSpecialsBaseLabel(category.label) && category.items.length);
+  }
 
-  // Muestra loading mientras espera
-  grid.innerHTML = '<p style="text-align:center;opacity:0.6;">Cargando disponibilidad...</p>';
+  if (!payload || typeof payload !== 'object') {
+    return [];
+  }
+
+  return Object.entries(payload)
+    .map(([label, items]) => ({
+      label,
+      items: Array.isArray(items) ? items : [],
+    }))
+    .filter(category => getSpecialsBaseLabel(category.label) && category.items.length);
+}
+
+function cargarFueraDeCarta() {
+  if (!document.getElementById('specials-grid')) return;
+
+  renderSpecialsStatus('loading');
 
   fetch(API_FUERA_DE_CARTA)
-    .then(res => res.json())
-    .then(categorias => {
-      grid.innerHTML = '';
-      const nombres = Object.keys(categorias);
-
-      if (nombres.length === 0) {
-        grid.innerHTML = '<p style="text-align:center;opacity:0.6;">Sin disponibilidad especial hoy.</p>';
-        return;
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
       }
 
-      nombres.forEach(categoria => {
-        const article = document.createElement('article');
-        article.className = 'specials-card';
-
-        const titulo = document.createElement('p');
-        titulo.className = 'specials-card__title';
-        titulo.textContent = categoria;
-
-        const lista = document.createElement('ul');
-        lista.className = 'specials-list';
-
-        categorias[categoria].forEach(plato => {
-          const li = document.createElement('li');
-          li.textContent = plato;
-          lista.appendChild(li);
-        });
-
-        article.appendChild(titulo);
-        article.appendChild(lista);
-        grid.appendChild(article);
-      });
-
-      enhanceSelectionSources();
+      return res.json();
+    })
+    .then(categorias => {
+      specialsCatalog = normalizeSpecialsCatalog(categorias);
+      specialsStatus = specialsCatalog.length ? 'ready' : 'empty';
+      renderSpecialsGrid();
     })
     .catch(() => {
-      grid.innerHTML = '<p style="text-align:center;opacity:0.6;">No se pudo cargar la disponibilidad.</p>';
+      specialsCatalog = [];
+      renderSpecialsStatus('error');
     });
 }
 
@@ -1004,11 +1226,10 @@ function cargarFueraDeCarta() {
 const savedLang = localStorage.getItem('aduana-lang') || 'es';
 const savedCard = localStorage.getItem('aduana-active-card') || 'food';
 
-cargarFueraDeCarta();
-enhanceSelectionSources();
 applyTranslation(savedLang);
 setActiveCard(savedCard);
-renderSelectionCart();
+enhanceSelectionSources();
+cargarFueraDeCarta();
 window.addEventListener('load', () => {
   window.setTimeout(openSpecialsModal, 220);
 });
