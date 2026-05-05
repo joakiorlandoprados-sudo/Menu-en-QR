@@ -537,6 +537,7 @@ const translations = {
 let currentLang = 'es';
 let specialsCatalog = [];
 let specialsStatus = 'idle';
+const SPECIALS_LANGUAGES = ['es', 'en', 'fr', 'it', 'de'];
 
 const specialsDictionary = {
   categories: {
@@ -643,6 +644,173 @@ const specialsDictionary = {
   },
 };
 
+function normalizeSpecialsKey(value) {
+  return String(value || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '');
+}
+
+function getSpecialsObjectField(entry, aliases) {
+  if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+    return undefined;
+  }
+
+  const normalizedAliases = new Set(aliases.map(normalizeSpecialsKey));
+
+  for (const [key, rawValue] of Object.entries(entry)) {
+    if (normalizedAliases.has(normalizeSpecialsKey(key))) {
+      return rawValue;
+    }
+  }
+
+  return undefined;
+}
+
+function getSpecialsLocalizedField(entry, baseAliases, lang) {
+  const aliases = [
+    lang,
+    ...baseAliases.map(alias => `${alias}${lang}`),
+    ...baseAliases.map(alias => `${lang}${alias}`),
+  ];
+
+  const value = getSpecialsObjectField(entry, aliases);
+  return typeof value === 'string' ? value.trim() : value;
+}
+
+function buildSpecialsMultilingualValue(entry, baseAliases) {
+  const valueByLang = {};
+
+  SPECIALS_LANGUAGES.forEach(lang => {
+    const localizedValue = getSpecialsLocalizedField(entry, baseAliases, lang);
+    if (typeof localizedValue === 'string' && localizedValue.trim()) {
+      valueByLang[lang] = localizedValue.trim();
+    }
+  });
+
+  const baseValue = getSpecialsObjectField(entry, baseAliases);
+  if (typeof baseValue === 'string' && baseValue.trim()) {
+    valueByLang.es = valueByLang.es || baseValue.trim();
+  }
+
+  if (!Object.keys(valueByLang).length) {
+    return '';
+  }
+
+  return valueByLang;
+}
+
+function mergeSpecialsLocalizedValue(currentValue, nextValue) {
+  if (!currentValue) return nextValue;
+  if (!nextValue) return currentValue;
+
+  const currentIsObject = currentValue && typeof currentValue === 'object' && !Array.isArray(currentValue);
+  const nextIsObject = nextValue && typeof nextValue === 'object' && !Array.isArray(nextValue);
+
+  if (!currentIsObject || !nextIsObject) {
+    return nextValue || currentValue;
+  }
+
+  const mergedValue = { ...currentValue };
+
+  SPECIALS_LANGUAGES.forEach(lang => {
+    if (typeof nextValue[lang] === 'string' && nextValue[lang].trim()) {
+      mergedValue[lang] = nextValue[lang].trim();
+    }
+  });
+
+  const currentOrder = Number(currentValue.order);
+  const nextOrder = Number(nextValue.order);
+
+  if (Number.isFinite(currentOrder) || Number.isFinite(nextOrder)) {
+    mergedValue.order = Math.min(
+      Number.isFinite(currentOrder) ? currentOrder : Number.POSITIVE_INFINITY,
+      Number.isFinite(nextOrder) ? nextOrder : Number.POSITIVE_INFINITY,
+    );
+  }
+
+  return mergedValue;
+}
+
+function getSpecialsNumericField(entry, aliases, fallbackValue = Number.POSITIVE_INFINITY) {
+  const rawValue = getSpecialsObjectField(entry, aliases);
+  if (rawValue === undefined || rawValue === null || rawValue === '') {
+    return fallbackValue;
+  }
+
+  const parsedValue = Number(String(rawValue).replace(',', '.'));
+  return Number.isFinite(parsedValue) ? parsedValue : fallbackValue;
+}
+
+function getSpecialsEntryOrder(entry, fallbackValue = Number.POSITIVE_INFINITY) {
+  if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+    return fallbackValue;
+  }
+
+  const parsedValue = Number(entry.order);
+  return Number.isFinite(parsedValue) ? parsedValue : fallbackValue;
+}
+
+function createSpecialsItemEntry(value, order) {
+  const baseLabel = getSpecialsBaseLabel(value);
+  if (!baseLabel) return null;
+
+  const normalizedValue = value && typeof value === 'object' && !Array.isArray(value)
+    ? { ...value }
+    : { es: baseLabel };
+
+  if (Number.isFinite(order)) {
+    normalizedValue.order = order;
+  }
+
+  return normalizedValue;
+}
+
+function sortSpecialsEntries(entries) {
+  return [...entries].sort((leftEntry, rightEntry) => {
+    const orderDifference = getSpecialsEntryOrder(leftEntry) - getSpecialsEntryOrder(rightEntry);
+    if (orderDifference !== 0) {
+      return orderDifference;
+    }
+
+    return getSpecialsBaseLabel(leftEntry).localeCompare(
+      getSpecialsBaseLabel(rightEntry),
+      'es',
+      { sensitivity: 'base' },
+    );
+  });
+}
+
+function dedupeSpecialsEntries(entries) {
+  const entriesByLabel = new Map();
+
+  entries.forEach(entry => {
+    const entryLabel = getSpecialsBaseLabel(entry);
+    if (!entryLabel) return;
+
+    const currentEntry = entriesByLabel.get(entryLabel);
+    entriesByLabel.set(entryLabel, mergeSpecialsLocalizedValue(currentEntry, entry));
+  });
+
+  return Array.from(entriesByLabel.values());
+}
+
+function getSpecialsCatalogMatch(type, baseLabel) {
+  if (!baseLabel) return null;
+
+  if (type === 'category') {
+    return specialsCatalog.find(category => getSpecialsBaseLabel(category.label) === baseLabel)?.label || null;
+  }
+
+  for (const category of specialsCatalog) {
+    const item = category.items.find(entry => getSpecialsBaseLabel(entry) === baseLabel);
+    if (item) return item;
+  }
+
+  return null;
+}
+
 function getSpecialsBaseLabel(value) {
   if (typeof value === 'string') {
     return value.trim();
@@ -652,13 +820,20 @@ function getSpecialsBaseLabel(value) {
     return '';
   }
 
-  const fallback = [value.es, value.label, value.name, value.title, value.value]
+  const fallback = [value.es, value.en, value.fr, value.it, value.de, value.label, value.name, value.title, value.value]
     .find(entry => typeof entry === 'string' && entry.trim());
 
   return fallback ? fallback.trim() : '';
 }
 
 function getSpecialsDisplayLabel(type, value) {
+  if (typeof value === 'string') {
+    const catalogMatch = getSpecialsCatalogMatch(type, value);
+    if (catalogMatch && catalogMatch !== value) {
+      return getSpecialsDisplayLabel(type, catalogMatch);
+    }
+  }
+
   if (value && typeof value === 'object' && !Array.isArray(value)) {
     const directValue = value[currentLang] || value.es;
     if (typeof directValue === 'string' && directValue.trim()) {
@@ -1175,13 +1350,165 @@ document.addEventListener('keydown', event => {
 // ── Fuera de carta dinámico desde Google Sheets ──
 const API_FUERA_DE_CARTA = 'https://script.google.com/macros/s/AKfycbx5kr9f2nja8-vigb--mBbwQd0Z_becR5hbybcXSkUU3Ng_7_QKVOikqflENRfylRuy/exec';
 
+function getSpecialsCategoryLabel(entry) {
+  if (typeof entry === 'string') {
+    return entry.trim();
+  }
+
+  if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+    return '';
+  }
+
+  return (
+    buildSpecialsMultilingualValue(entry, ['categoria', 'category', 'section', 'grupo', 'title', 'name', 'label']) ||
+    getSpecialsBaseLabel(entry)
+  );
+}
+
+function getSpecialsSingleItem(entry) {
+  if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+    return '';
+  }
+
+  return (
+    buildSpecialsMultilingualValue(entry, ['plato', 'dish', 'item', 'nombre', 'producto', 'opcion', 'option']) ||
+    getSpecialsBaseLabel(entry)
+  );
+}
+
+function parseSpecialsBoolean(value) {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'number') return value !== 0;
+  if (typeof value !== 'string') return Boolean(value);
+
+  const normalizedValue = value.trim().toLowerCase();
+  return ['true', '1', 'si', 'sí', 'yes', 'y', 'activo', 'activa', 'on'].includes(normalizedValue);
+}
+
+function isSpecialsEntryAvailable(entry) {
+  if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+    return true;
+  }
+
+  const rawAvailability = getSpecialsObjectField(entry, [
+    'disponible',
+    'available',
+    'activo',
+    'activa',
+    'enabled',
+    'published',
+    'visible',
+  ]);
+
+  if (rawAvailability === undefined || rawAvailability === null || rawAvailability === '') {
+    return true;
+  }
+
+  return parseSpecialsBoolean(rawAvailability);
+}
+
+function normalizeSpecialsItems(value) {
+  if (Array.isArray(value)) {
+    return value.flatMap(entry => normalizeSpecialsItems(entry));
+  }
+
+  if (typeof value === 'string') {
+    return value
+      .split(/\r?\n|;|\|/)
+      .map(entry => entry.trim())
+      .filter(Boolean);
+  }
+
+  if (!value || typeof value !== 'object') {
+    return [];
+  }
+
+  const nestedItems = value.platos || value.items || value.dishes || value.lista || value.opciones || value.productos;
+  if (nestedItems !== undefined) {
+    return normalizeSpecialsItems(nestedItems);
+  }
+
+  const singleItem = getSpecialsSingleItem(value);
+  if (singleItem) {
+    return [singleItem];
+  }
+
+  if (getSpecialsBaseLabel(value)) {
+    return [value];
+  }
+
+  return [];
+}
+
 function normalizeSpecialsCatalog(payload) {
   if (Array.isArray(payload)) {
-    return payload
-      .map(entry => ({
-        label: entry?.categoria || entry?.category || entry?.title || entry?.name || '',
-        items: Array.isArray(entry?.platos) ? entry.platos : Array.isArray(entry?.items) ? entry.items : [],
+    const groupedCatalog = new Map();
+
+    payload.forEach((entry, index) => {
+      if (!isSpecialsEntryAvailable(entry)) return;
+
+      const categoryLabel = getSpecialsCategoryLabel(entry);
+      const categoryKey = getSpecialsBaseLabel(categoryLabel);
+      const nestedItems = normalizeSpecialsItems(entry);
+      const rowItem = getSpecialsSingleItem(entry);
+      const itemOrder = getSpecialsNumericField(entry, ['orden', 'order', 'posicion', 'position'], index);
+      const categoryOrder = getSpecialsNumericField(
+        entry,
+        ['ordencategoria', 'categoriaorden', 'categoryorder', 'categoryposition', 'orden grupo', 'grouporder'],
+        itemOrder,
+      );
+
+      if (!categoryKey) return;
+
+      if (!groupedCatalog.has(categoryKey)) {
+        groupedCatalog.set(categoryKey, {
+          label: categoryLabel,
+          order: categoryOrder,
+          items: [],
+        });
+      }
+
+      const targetCategory = groupedCatalog.get(categoryKey);
+      targetCategory.label = mergeSpecialsLocalizedValue(targetCategory.label, categoryLabel);
+      targetCategory.order = Math.min(
+        getSpecialsEntryOrder(targetCategory),
+        Number.isFinite(categoryOrder) ? categoryOrder : Number.POSITIVE_INFINITY,
+      );
+
+      if (nestedItems.length) {
+        targetCategory.items.push(
+          ...nestedItems
+            .map((item, itemIndex) => createSpecialsItemEntry(item, itemOrder + (itemIndex / 1000)))
+            .filter(Boolean),
+        );
+        return;
+      }
+
+      if (rowItem) {
+        const normalizedItem = createSpecialsItemEntry(rowItem, itemOrder);
+        if (normalizedItem) {
+          targetCategory.items.push(normalizedItem);
+        }
+      }
+    });
+
+    return Array.from(groupedCatalog.values())
+      .map(category => ({
+        ...category,
+        items: sortSpecialsEntries(dedupeSpecialsEntries(category.items)),
       }))
+      .sort((leftCategory, rightCategory) => {
+        const orderDifference = getSpecialsEntryOrder(leftCategory) - getSpecialsEntryOrder(rightCategory);
+        if (orderDifference !== 0) {
+          return orderDifference;
+        }
+
+        return getSpecialsBaseLabel(leftCategory.label).localeCompare(
+          getSpecialsBaseLabel(rightCategory.label),
+          'es',
+          { sensitivity: 'base' },
+        );
+      })
       .filter(category => getSpecialsBaseLabel(category.label) && category.items.length);
   }
 
@@ -1192,7 +1519,13 @@ function normalizeSpecialsCatalog(payload) {
   return Object.entries(payload)
     .map(([label, items]) => ({
       label,
-      items: Array.isArray(items) ? items : [],
+      items: sortSpecialsEntries(
+        dedupeSpecialsEntries(
+          normalizeSpecialsItems(items)
+            .map((item, index) => createSpecialsItemEntry(item, index))
+            .filter(Boolean),
+        ),
+      ),
     }))
     .filter(category => getSpecialsBaseLabel(category.label) && category.items.length);
 }
