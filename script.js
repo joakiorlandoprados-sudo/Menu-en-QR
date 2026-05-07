@@ -1,8 +1,126 @@
 ﻿/* =====================================================
-   RESTAURANTE ADUANA – script.js
-   Traducciones (ES / EN / FR / IT / DE)
-   Navegación Carta / Vinos
-   ===================================================== */
+    RESTAURANTE ADUANA – script.js
+    Traducciones (ES / EN / FR / IT / DE)
+    Navegación Carta / Vinos
+    ===================================================== */
+
+// 14 alérgenos UE (Reglamento 1169/2011)
+const allergenData = {
+  cereals_gluten: {
+    label: { es: 'Cereales con gluten', en: 'Cereals containing gluten', fr: 'Céréales contenant du gluten', it: 'Cereali contenenti glutine', de: 'Glutenhaltiges Getreide' },
+    icon: '🌾',
+  },
+  crustaceans: {
+    label: { es: 'Crustáceos', en: 'Crustaceans', fr: 'Crustacés', it: 'Crostacei', de: 'Krebstiere' },
+    icon: '🦐',
+  },
+  eggs: {
+    label: { es: 'Huevos', en: 'Eggs', fr: 'Œufs', it: 'Uova', de: 'Eier' },
+    icon: '🥚',
+  },
+  fish: {
+    label: { es: 'Pescado', en: 'Fish', fr: 'Poisson', it: 'Pesce', de: 'Fisch' },
+    icon: '🐟',
+  },
+  peanuts: {
+    label: { es: 'Cacahuetes', en: 'Peanuts', fr: 'Arachides', it: 'Arachidi', de: 'Erdnüsse' },
+    icon: '🥜',
+  },
+  soybeans: {
+    label: { es: 'Soja', en: 'Soybeans', fr: 'Soja', it: 'Soia', de: 'Soja' },
+    icon: '🫘',
+  },
+  milk: {
+    label: { es: 'Leche', en: 'Milk', fr: 'Lait', it: 'Latte', de: 'Milch' },
+    icon: '🥛',
+  },
+  nuts: {
+    label: { es: 'Frutos de cáscara', en: 'Tree nuts', fr: 'Fruits à coque', it: 'Frutta a guscio', de: 'Schalenfrüchte (Nüsse)' },
+    icon: '🌰',
+  },
+  celery: {
+    label: { es: 'Apio', en: 'Celery', fr: 'Céleri', it: 'Sedano', de: 'Sellerie' },
+    icon: '🥬',
+  },
+  mustard: {
+    label: { es: 'Mostaza', en: 'Mustard', fr: 'Moutarde', it: 'Senape', de: 'Senf' },
+    icon: '🟡',
+  },
+  sesame: {
+    label: { es: 'Sésamo', en: 'Sesame', fr: 'Sésame', it: 'Sesamo', de: 'Sesam' },
+    icon: '⚪',
+  },
+  sulphur_dioxide_sulphites: {
+    label: { es: 'Dióxido de azufre y sulfitos', en: 'Sulphur dioxide and sulphites', fr: 'Dioxyde de soufre et sulfites', it: 'Anidride solforosa e solfiti', de: 'Schwefeldioxid und Sulfite' },
+    icon: '🧪',
+  },
+  lupin: {
+    label: { es: 'Altramuces', en: 'Lupin', fr: 'Lupin', it: 'Lupini', de: 'Lupinen' },
+    icon: '🟣',
+  },
+  molluscs: {
+    label: { es: 'Moluscos', en: 'Molluscs', fr: 'Mollusques', it: 'Molluschi', de: 'Weichtiere' },
+    icon: '🐚',
+  },
+};
+
+const allergenKeyAliases = {
+  gluten: 'cereals_gluten',
+  dairy: 'milk',
+  soy: 'soybeans',
+  sulphites: 'sulphur_dioxide_sulphites',
+  seafood: 'molluscs',
+  shellfish: 'crustaceans',
+  peanut: 'peanuts',
+};
+
+function normalizeAllergenKey(key) {
+  return allergenData[key] ? key : (allergenKeyAliases[key] || key);
+}
+
+const dishAllergens = {
+  d_asparagus: ['cereals_gluten', 'eggs', 'milk'],
+  d_gambita: ['cereals_gluten', 'crustaceans', 'eggs', 'fish', 'molluscs'],
+  d_calamar_plancha: ['crustaceans', 'eggs', 'fish', 'milk', 'molluscs'],
+  d_pulpo: ['crustaceans', 'fish', 'milk'],
+  d_sardina_fresca: ['crustaceans', 'fish'],
+  d_calamar_andaluza: ['cereals_gluten', 'crustaceans', 'eggs', 'fish', 'milk', 'molluscs'],
+  d_croquetas_boletus: ['cereals_gluten', 'crustaceans', 'eggs', 'fish', 'milk', 'molluscs'],
+  d_croquetas_jamon: ['cereals_gluten', 'crustaceans', 'eggs', 'fish', 'milk', 'molluscs'],
+  d_gambas_ajillo: ['crustaceans', 'sulphur_dioxide_sulphites'],
+  d_txipirones: ['crustaceans', 'fish', 'milk'],
+  d_sepia: ['crustaceans', 'fish', 'molluscs'],
+  d_bravas: ['cereals_gluten', 'eggs', 'milk'],
+  d_bunuelos: ['cereals_gluten', 'eggs', 'fish'],
+  d_ostra: ['molluscs'],
+  d_anchoas: ['fish'],
+  d_sardina_ahumada: ['fish'],
+  d_ensaladilla: ['cereals_gluten', 'eggs', 'fish', 'milk'],
+  d_ventresca: ['fish'],
+  d_ensalada_aduana: ['eggs', 'fish'],
+  d_atun_aguacate: ['fish'],
+  d_tabla_jamon: ['milk'],
+  d_arroz_boletus: ['crustaceans', 'fish', 'sulphur_dioxide_sulphites', 'molluscs'],
+  d_arroz_marisco: ['crustaceans', 'fish', 'sulphur_dioxide_sulphites', 'molluscs'],
+  d_arroz_pollo: ['crustaceans', 'sulphur_dioxide_sulphites'],
+  d_arroz_pato: ['crustaceans', 'sulphur_dioxide_sulphites'],
+  d_arroz_pulpo: ['crustaceans', 'fish', 'sulphur_dioxide_sulphites', 'molluscs'],
+  d_arroz_bogavante: ['crustaceans', 'fish', 'sulphur_dioxide_sulphites', 'molluscs'],
+  d_corvina: ['fish'],
+  d_bacalao: ['fish', 'milk', 'molluscs'],
+  d_emperador: ['fish'],
+  d_salmon: ['fish'],
+  d_entrecotte: ['cereals_gluten'],
+  d_carrillada: ['cereals_gluten', 'sulphur_dioxide_sulphites'],
+  d_solomillo: ['sulphur_dioxide_sulphites'],
+  d_tarta_queso: ['eggs', 'milk'],
+  d_tarta_tatin: ['cereals_gluten', 'eggs', 'milk'],
+  d_brownie: ['cereals_gluten', 'eggs', 'milk', 'nuts'],
+  d_trufas: ['cereals_gluten', 'milk'],
+  d_sorbete: ['eggs', 'milk', 'sulphur_dioxide_sulphites'],
+  d_tiramisu: ['cereals_gluten', 'eggs', 'milk'],
+  d_flan: ['eggs', 'milk']
+};
 
 const translations = {
   es: {
@@ -12,6 +130,8 @@ const translations = {
     nav_food: "Carta",
     nav_wine: "Vinos",
     allergen: "* Disponemos de carta de alérgenos. Pídela a nuestro camarero/a.",
+    allergens_help: "¿Alérgenos?",
+    allergens_title: "Alérgenos (UE)",
     hero_kicker: "Tradición mediterránea junto al puerto",
     hero_title: "La elegancia del Mediterráneo, servida frente al mar.",
     hero_description: "Una carta pensada para disfrutar el producto, la tradición y el carácter de Aduana en el Puerto de Valencia.",
@@ -135,6 +255,8 @@ const translations = {
     nav_food: "Menu",
     nav_wine: "Wines",
     allergen: "* We have an allergen menu available. Please ask your waiter.",
+    allergens_help: "Allergens?",
+    allergens_title: "Allergens (EU)",
     hero_kicker: "Mediterranean tradition by the harbor",
     hero_title: "The elegance of the Mediterranean, served by the sea.",
     hero_description: "A menu designed to celebrate product, tradition and the character of Aduana in the Port of Valencia.",
@@ -236,6 +358,8 @@ const translations = {
     nav_food: "Carte",
     nav_wine: "Vins",
     allergen: "* Nous disposons d'une carte des allergènes. Demandez à votre serveur.",
+    allergens_help: "Allergènes ?",
+    allergens_title: "Allergènes (UE)",
     hero_kicker: "Tradition méditerranéenne au bord du port",
     hero_title: "L'élégance de la Méditerranée, servie face à la mer.",
     hero_description: "Une carte pensée pour savourer le produit, la tradition et le caractère d'Aduana au Port de Valence.",
@@ -337,6 +461,8 @@ const translations = {
     nav_food: "Menù",
     nav_wine: "Vini",
     allergen: "* Disponiamo di una carta degli allergeni. Chiedete al vostro cameriere.",
+    allergens_help: "Allergeni?",
+    allergens_title: "Allergeni (UE)",
     hero_kicker: "Tradizione mediterranea accanto al porto",
     hero_title: "L'eleganza del Mediterraneo, servita di fronte al mare.",
     hero_description: "Un menu pensato per valorizzare il prodotto, la tradizione e il carattere di Aduana nel Porto di Valencia.",
@@ -438,6 +564,8 @@ const translations = {
     nav_food: "Speisekarte",
     nav_wine: "Weine",
     allergen: "* Wir haben eine Allergenkarte. Bitte fragen Sie Ihren Kellner.",
+    allergens_help: "Allergene?",
+    allergens_title: "Allergene (EU)",
     hero_kicker: "Mediterrane Tradition am Hafen",
     hero_title: "Die Eleganz des Mittelmeers, serviert direkt am Meer.",
     hero_description: "Eine Karte, die Produkt, Tradition und den Charakter von Aduana im Hafen von Valencia in Szene setzt.",
@@ -949,6 +1077,8 @@ function applyTranslation(lang) {
 
   renderSpecialsGrid();
   renderSelectionCart();
+  renderAllergenLegend();
+  refreshAllergenIconTitles();
 }
 
 document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1562,7 +1692,124 @@ const savedCard = localStorage.getItem('aduana-active-card') || 'food';
 applyTranslation(savedLang);
 setActiveCard(savedCard);
 enhanceSelectionSources();
+enhanceAllergenIcons();
 cargarFueraDeCarta();
 window.addEventListener('load', () => {
   window.setTimeout(openSpecialsModal, 220);
 });
+
+function enhanceAllergenIcons() {
+  document.querySelectorAll('#menu-food .dish-item').forEach(item => {
+    const nameEl = item.querySelector('.dish-name');
+    if (!nameEl) return;
+    
+    const i18nKey = nameEl.dataset.i18n;
+    const allergens = i18nKey ? dishAllergens[i18nKey] : null;
+    
+    if (!allergens || !allergens.length) return;
+
+    if (item.querySelector('.dish-allergens')) return;
+
+    const container = document.createElement('div');
+    container.className = 'dish-allergens';
+    
+    allergens.forEach(key => {
+      const normalizedKey = normalizeAllergenKey(key);
+      if (!allergenData[normalizedKey]) return;
+      
+      const icon = document.createElement('span');
+      icon.className = 'allergen-icon';
+      icon.textContent = allergenData[normalizedKey].icon;
+      icon.title = allergenData[normalizedKey].label[currentLang] || allergenData[normalizedKey].label.es;
+      icon.dataset.allergen = normalizedKey;
+      container.appendChild(icon);
+    });
+    
+    if (!container.children.length) return;
+
+    nameEl.insertAdjacentElement('afterend', container);
+  });
+}
+
+function refreshAllergenIconTitles() {
+  document.querySelectorAll('#menu-food .allergen-icon').forEach(icon => {
+    const key = icon.dataset.allergen;
+    if (!key || !allergenData[key]) return;
+    icon.title = allergenData[key].label[currentLang] || allergenData[key].label.es;
+  });
+}
+
+document.addEventListener('click', event => {
+  const allergenIcon = event.target.closest('.allergen-icon');
+  if (allergenIcon) {
+    openAllergensModal(allergenIcon.dataset.allergen);
+    return;
+  }
+  
+  if (event.target.closest('#allergens-help')) {
+    openAllergensModal();
+    return;
+  }
+
+  if (event.target.closest('[data-close-allergens]')) {
+    closeAllergensModal();
+  }
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    const modal = document.getElementById('allergens-modal');
+    if (modal && !modal.hidden) closeAllergensModal();
+  }
+});
+
+function renderAllergenLegend(activeKey) {
+  const legend = document.getElementById('allergens-legend');
+  if (!legend) return;
+
+  const keys = Object.keys(allergenData);
+  legend.innerHTML = '';
+
+  keys.forEach(key => {
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'allergens-legend__item';
+    row.dataset.allergen = key;
+
+    if (activeKey && key === activeKey) {
+      row.classList.add('is-active');
+    }
+
+    const icon = document.createElement('span');
+    icon.className = 'allergens-legend__icon';
+    icon.textContent = allergenData[key].icon;
+
+    const label = document.createElement('span');
+    label.className = 'allergens-legend__label';
+    label.textContent = allergenData[key].label[currentLang] || allergenData[key].label.es;
+
+    row.append(icon, label);
+    legend.appendChild(row);
+  });
+}
+
+function openAllergensModal(activeKey) {
+  const modal = document.getElementById('allergens-modal');
+  if (!modal) return;
+  renderAllergenLegend(activeKey);
+  modal.hidden = false;
+  document.body.classList.add('modal-open');
+
+  if (activeKey) {
+    const legend = document.getElementById('allergens-legend');
+    const target = legend?.querySelector(`[data-allergen="${CSS.escape(activeKey)}"]`);
+    target?.scrollIntoView({ block: 'nearest' });
+  }
+}
+
+function closeAllergensModal() {
+  const modal = document.getElementById('allergens-modal');
+  if (!modal) return;
+  modal.hidden = true;
+  document.body.classList.remove('modal-open');
+}

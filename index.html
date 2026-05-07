@@ -442,6 +442,17 @@
 
   </main>
 
+  <!-- ALLERGENS LEGEND -->
+  <button class="allergens-help" type="button" id="allergens-help" data-i18n="allergens_help" aria-haspopup="dialog">¿Alérgenos?</button>
+  <div class="allergens-modal" id="allergens-modal" hidden>
+    <div class="allergens-modal__backdrop" data-close-allergens></div>
+    <section class="allergens-modal__panel" role="dialog" aria-modal="true" aria-labelledby="allergens-title">
+      <button class="allergens-modal__close" type="button" data-close-allergens aria-label="Cerrar">×</button>
+      <h2 class="allergens-modal__title" id="allergens-title" data-i18n="allergens_title">Alérgenos (UE)</h2>
+      <div class="allergens-modal__grid" id="allergens-legend"></div>
+    </section>
+  </div>
+
   <!-- ===================== WINE MENU ===================== -->
   <main id="menu-wine" class="menu-section">
 

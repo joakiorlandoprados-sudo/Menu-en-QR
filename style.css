@@ -676,6 +676,8 @@ body {
   color: var(--ink);
   white-space: nowrap;
   letter-spacing: 0.01em;
+  display: inline-flex;
+  align-items: center;
 }
 
 .dish-price--ask {
@@ -684,6 +686,267 @@ body {
   color: var(--brown);
   font-family: var(--font-body);
   font-size: 15px;
+}
+
+.dish-allergens {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  padding-left: 2px;
+  grid-column: 1 / 2;
+  align-self: start;
+}
+
+.dish-price__text {
+  display: inline-block;
+}
+
+.dish-allergens-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.allergen-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(176, 141, 87, 0.15);
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.dish-allergens-inline .allergen-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  background: rgba(176, 141, 87, 0.12);
+}
+
+.allergen-icon:hover {
+  transform: scale(1.15);
+  background: rgba(176, 141, 87, 0.3);
+}
+
+.dish-allergens-inline .allergen-icon:hover {
+  transform: scale(1.1);
+}
+
+.allergens-help {
+  position: fixed;
+  left: 22px;
+  bottom: 92px;
+  z-index: 186;
+  border: 1px solid rgba(176, 141, 87, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 252, 247, 0.96);
+  color: var(--ink-soft);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 12px 14px;
+  cursor: pointer;
+  box-shadow: 0 18px 42px rgba(32, 23, 17, 0.18);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.allergens-help:hover {
+  transform: translateY(-2px);
+  border-color: rgba(176, 141, 87, 0.42);
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.allergens-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 18px;
+}
+
+.allergens-modal[hidden] {
+  display: none;
+}
+
+.allergens-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 10, 8, 0.68);
+  backdrop-filter: blur(8px);
+}
+
+.allergens-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(520px, 100%);
+  max-height: min(70dvh, 560px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid rgba(176, 141, 87, 0.22);
+  border-radius: 22px;
+  padding: 18px 18px 14px;
+  background: rgba(255, 252, 247, 0.98);
+  box-shadow: 0 28px 80px rgba(20, 15, 11, 0.3);
+}
+
+.allergens-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(176, 141, 87, 0.22);
+  border-radius: 50%;
+  background: rgba(176, 141, 87, 0.12);
+  color: var(--ink);
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.allergens-modal__title {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 4px 44px 14px 0;
+}
+
+.allergens-modal__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.allergens-legend__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid rgba(176, 141, 87, 0.14);
+  border-radius: 16px;
+  background: rgba(176, 141, 87, 0.06);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.allergens-legend__item.is-active {
+  background: rgba(176, 141, 87, 0.14);
+  border-color: rgba(176, 141, 87, 0.3);
+}
+
+.allergens-legend__icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(176, 141, 87, 0.14);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.allergens-legend__label {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.allergen-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.allergen-modal[hidden] {
+  display: none;
+}
+
+.allergen-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 10, 8, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.allergen-modal__panel {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 251, 0.98);
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  border-radius: 18px;
+  padding: 24px;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 20px 50px rgba(20, 15, 11, 0.25);
+}
+
+.allergen-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(176, 141, 87, 0.15);
+  color: var(--ink);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.allergen-modal__title {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.allergen-modal__icon {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.allergen-modal__name {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.allergen-modal__desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.5;
 }
 
 #menu-food .dish-item {
@@ -1111,20 +1374,22 @@ body {
   #menu-food .dish-item {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      "name name"
-      "price add";
-    align-items: start;
-    row-gap: 10px;
+      "name price"
+      ". add";
+    align-items: center;
+    row-gap: 8px;
   }
   #menu-food .dish-name {
     grid-area: name;
+    max-width: none;
   }
   #menu-food .dish-dots {
     display: none;
   }
   #menu-food .dish-price {
     grid-area: price;
-    justify-self: start;
+    justify-self: end;
+    align-self: center;
   }
   #menu-food .menu-add-btn {
     grid-area: add;
@@ -1134,6 +1399,12 @@ body {
   .selection-cart {
     left: 16px;
     bottom: 16px;
+  }
+  .allergens-help {
+    left: 16px;
+    bottom: 84px;
+    padding: 11px 12px;
+    font-size: 11px;
   }
   .selection-cart__toggle {
     min-height: 54px;
@@ -1223,7 +1494,7 @@ body {
     flex-wrap: nowrap;
     scrollbar-width: none;
   }
-  .section-shortcuts::-webkit-scrollbar { display: none; }
+.section-shortcuts::-webkit-scrollbar { display: none; }
   .menu-section { padding: 8px 16px 32px; }
   .menu-category { padding: 22px 16px; border-radius: 20px; }
   .category-header { gap: 10px; }
@@ -1233,5 +1504,15 @@ body {
   }
   .dish-name, .wine-info { max-width: 60%; }
   .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .dish-allergens { margin-top: 4px; }
+  #menu-food .dish-allergens {
+    grid-column: 1 / 2;
+    grid-row: 2;
+  }
+  .allergen-icon { width: 20px; height: 20px; font-size: 12px; }
+  .dish-allergens-inline .allergen-icon { width: 16px; height: 16px; font-size: 11px; }
+  .allergen-modal__panel { padding: 20px; border-radius: 16px; }
+  .allergen-modal__icon { font-size: 28px; }
+  .allergen-modal__name { font-size: 16px; }
 }
 
